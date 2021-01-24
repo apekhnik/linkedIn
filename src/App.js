@@ -1,10 +1,15 @@
 import React from "react";
 import "./App.css";
+import Header from "./components/header/Header";
+import Sidebar from "./components/Sidebar/Sibebar";
 
 function App() {
   return (
     <div className="App">
-      <h1>oh shit here we go again</h1>
+      <Header />
+      <div className="app_body">
+        <Sidebar />
+      </div>
     </div>
   );
 }

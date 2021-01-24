@@ -1,0 +1,5 @@
+.sideber {
+  top: 80px;
+  position: sticky;
+  flex: 0.2;
+}

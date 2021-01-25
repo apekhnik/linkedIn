@@ -8,8 +8,11 @@ import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import Post from "./Post/Post";
 import InputOptions from "../inputOptions/InputOptions";
 import { db } from "../../firebase";
+import firebase from "firebase";
 const Feed = () => {
+  const [textInput, setTextInput] = useState("");
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     db.collection("posts").onSnapshot((spanshot) =>
       setPosts(
@@ -23,10 +26,23 @@ const Feed = () => {
   const sendPost = (e) => {
     e.preventDefault();
     db.collection("posts").add({
-      name: "asd",
-      description: "desc",
-      message: "msg",
+      name: "Alex",
+      description: "cool guy",
+      message: textInput,
     });
+
+    setTextInput("");
+  };
+  const del = () => {
+    db.collection("posts")
+      .doc("JVUfEeDq6Kyl5HXehYmM")
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
   };
   return (
     <div className="feed">
@@ -34,7 +50,11 @@ const Feed = () => {
         <div className="feed__input">
           <CreateIcon />
           <form action="">
-            <input type="text" />
+            <input
+              type="text"
+              value={textInput}
+              onChange={(e) => setTextInput(e.target.value)}
+            />
             <button type="submit" onClick={sendPost}>
               Send
             </button>
@@ -55,8 +75,16 @@ const Feed = () => {
           />
         </div>
       </div>
-      {/* ПОСТ */}
-      <Post name="alex" description="description" message="gg" />
+      {posts.map(({ id, data }) => {
+        return (
+          <Post
+            name={data.name}
+            description={data.description}
+            message={data.message}
+          />
+        );
+      })}
+      <button onClick={del}>DELETE</button>
     </div>
   );
 };

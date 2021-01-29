@@ -3,6 +3,7 @@
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
+  position: relative;
 }
 .post__header {
   display: flex;
@@ -24,4 +25,11 @@
 .post__buttons {
   display: flex;
   justify-content: space-evenly;
+}
+.post__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, 50%);
+  cursor: pointer;
 }

@@ -1,7 +1,12 @@
 import { Avatar } from "@material-ui/core";
 import React from "react";
+import { useSelector } from "react-redux";
+import { getUser } from "../../features/appSlice";
 import "./index.css";
 const Sidebar = () => {
+  const user = useSelector(getUser);
+  console.log(user);
+  const { displayName, email, photoURL } = user;
   const recentItem = (topic) => (
     <div className="sidebar__recentItem">
       <span className="sidebar__hash">#</span>
@@ -15,9 +20,9 @@ const Sidebar = () => {
           src="https://image.freepik.com/free-vector/gradient-wallpaper-background_1159-5356.jpg"
           alt=""
         />
-        <Avatar src="https://sun2-4.userapi.com/impf/c633923/v633923640/128ce/cVGD03-9wwk.jpg?size=200x0&quality=96&crop=542,373,1515,1515&sign=77a74306caa74324233d6a02fb89c584&ava=1" />
-        <h2>Alex Pekhnik</h2>
-        <h4>aphk@gmail.com</h4>
+        <Avatar src={photoURL}>{email[0]}</Avatar>
+        <h2>{displayName}</h2>
+        <h4>{email}</h4>
       </div>
       <div className="sidebar__stats">
         <div className="sidebar__stat">

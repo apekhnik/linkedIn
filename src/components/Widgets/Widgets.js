@@ -20,6 +20,9 @@ const Widgets = () => {
         <h2>LinkedIn News</h2>
         <InfoIcon />
       </div>
+      {newArticle("Новость", "information")}
+      {newArticle("Новость", "information")}
+      {newArticle("Новость", "information")}
     </div>
   );
 };
